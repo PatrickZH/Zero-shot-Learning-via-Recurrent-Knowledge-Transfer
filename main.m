@@ -15,7 +15,7 @@ for iter = 1:10
         Attribute = attributes_embedding_c;
         [~,dim_f] = size(ImageFeatures);
         load('AwA_splits_default.mat');
-        load('AwA_classes_cn.mat');
+        load('AwA_ClassName.mat');
         classes_en = classes;
         N = 50;
         N_s = 40;
@@ -35,7 +35,7 @@ for iter = 1:10
          WordVectors = K;
          [~,dim_f] = size(ImageFeatures);
          load('CUB_splits_default.mat');
-         load('CUB_classes_cn.mat');
+         load('CUB_ClassName.mat');
          classes_cn = CUB_classes_cn(:,2);
          N = 200;
          N_s = 150;
@@ -49,12 +49,11 @@ for iter = 1:10
 
     %% ImageNet
     elseif dataset = 'ImageNet';
-         load('ImageNet_ImageFeatures_VGG.mat');
-         load('ImageNet_WordVectors.mat');
+         load('ImageNet_ImageFeatures_VGG_WordVectors.mat');
          [~,dim_f] = size(ImageFeatures);
          [~,dim_w] = size(WordVectors);
          load('ImageNet_splits_default.mat');
-         load('ImageNet_classes_cn.mat');
+         load('ImageNet_ClassName.mat');
          classes_cn = ImageNet_classes_cn(:,2);
          N = 1360;
          N_s = 1000;
@@ -229,7 +228,7 @@ Clt_Y = Clt_eV(:,1:Clt_T);
 
 
 K = 11;
-idx = kmeans(Clt_Y,K); 
+idx = kmeans(Clt_Y,K);
 names = [classes_cn(list_train);classes_cn(list_test)];
 clusters = cell(20,20);
 for i = 1:K
