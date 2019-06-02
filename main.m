@@ -7,7 +7,6 @@ dataset = 'AwA'
 for iter = 1:10
     fprintf('iter = %d\n', iter);
 
-    %% AwA
     if dataset == 'AwA';
         load('AwA_ImageFeatures_VGG.mat')
         load('AwA_WordVectors.mat');
@@ -27,7 +26,6 @@ for iter = 1:10
         SparsitySet = [1];  % with/without sparsity
         LocalitySet = [0]; % with/without D
 
-    %% CUB
     elseif dataset = 'CUB';
          load('CUB_ImageFeatures_ResGoog.mat');
          load('CUB_Attributes.mat');
@@ -47,7 +45,6 @@ for iter = 1:10
          SparsitySet = [1];  % with/without sparsity
          LocalitySet = [0]; % with/without D
 
-    %% ImageNet
     elseif dataset = 'ImageNet';
          load('ImageNet_ImageFeatures_VGG_WordVectors.mat');
          [~,dim_f] = size(ImageFeatures);
@@ -73,7 +70,7 @@ for iter = 1:10
          SparsitySet = [1];  % with/without sparsity
          LocalitySet = [0,1]; % with/without D
 
-    %% Normalization
+    % Normalization
     ImageFeatures = ImageFeatures./max(max(ImageFeatures));
     Attribute = Attribute./max(max(Attribute));
     WordVectors = WordVectors./max(max(WordVectors));
@@ -139,7 +136,6 @@ for iter = 1:10
                 ConTest = [AttTest,WorTest];
                 ConAll = [ConTrain;ConTest];
 
-                %% SSC
                 % Cross-Validation
                 % Attribute
                 if hasAttribute
@@ -209,7 +205,8 @@ end
 
 
 
-%% clustering
+
+%% Clustering
 
 alpha = alpha_A;
 Clt_W = (abs(alpha)+abs(alpha'))./2;
