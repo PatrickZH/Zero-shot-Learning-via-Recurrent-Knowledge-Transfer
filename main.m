@@ -206,8 +206,7 @@ end
 
 
 
-%% Clustering
-
+% Clustering
 alpha = alpha_A;
 Clt_W = (abs(alpha)+abs(alpha'))./2;
 Clt_D = diag(sum(Clt_W,2));
